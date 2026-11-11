@@ -771,3 +771,56 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .footer-brand, .back-top { color: #192d55; }
 .footer-brand span { color: #5a606a; }
 .footer-note svg { color: #192d55; }
+
+/* Botanical linework brings texture to the white sections below the cover. */
+.event-section.section-shell,
+.journey-section.section-shell,
+.gallery-section,
+.thank-you.section-shell,
+.site-footer {
+  background-image: url("/images/floral-pattern.svg"), radial-gradient(ellipse at 50% 50%, rgba(229,235,245,.25), transparent 72%);
+  background-position: center, center;
+  background-repeat: repeat, no-repeat;
+  background-size: 280px 280px, cover;
+}
+.event-section::before,
+.event-section::after,
+#gallery::before,
+.thank-you::after {
+  position: absolute;
+  width: clamp(230px, 34vw, 390px);
+  aspect-ratio: 1;
+  background: url("/images/floral-pattern.svg") center / contain no-repeat;
+  content: "";
+  opacity: .42;
+  pointer-events: none;
+}
+.event-section::before { top: -145px; left: -125px; border: 0; border-radius: 0; box-shadow: none; }
+.event-section::after { right: -130px; bottom: -155px; }
+#gallery { position: relative; isolation: isolate; overflow: hidden; }
+#gallery::before { z-index: -1; top: -145px; right: -105px; }
+.gallery-grid { position: relative; z-index: 1; }
+.thank-you { isolation: isolate; }
+.thank-you::after { z-index: -1; right: -125px; bottom: -160px; }
+.thank-you::before { border-color: rgba(25,45,85,.2); }
+.site-footer { background-size: 170px 170px, cover; }
+
+@media (max-width: 600px) {
+  .event-section.section-shell,
+  .journey-section.section-shell,
+  .gallery-section,
+  .thank-you.section-shell { background-size: 210px 210px, cover; }
+  .event-section::before { top: -120px; left: -155px; }
+  .event-section::after { right: -160px; bottom: -130px; }
+}
+
+@media (max-width: 600px) {
+  .hero-section.graduation-cover { min-height: 100vh; min-height: 100svh; }
+  .hero-section.graduation-cover .cover-stage {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
