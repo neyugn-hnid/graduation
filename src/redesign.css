@@ -778,10 +778,10 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .gallery-section,
 .thank-you.section-shell,
 .site-footer {
-  background-image: url("/images/floral-pattern.svg"), radial-gradient(ellipse at 50% 50%, rgba(229,235,245,.25), transparent 72%);
-  background-position: center, center;
-  background-repeat: repeat, no-repeat;
-  background-size: 280px 280px, cover;
+  background-image: url("/images/floral-pattern.svg"), url("/images/silk-wave-bg.png"), radial-gradient(ellipse at 50% 50%, rgba(229,235,245,.2), transparent 72%);
+  background-position: center, center 46%, center;
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-size: 280px 280px, cover, cover;
 }
 .event-section::before,
 .event-section::after,
@@ -803,24 +803,24 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .thank-you { isolation: isolate; }
 .thank-you::after { z-index: -1; right: -125px; bottom: -160px; }
 .thank-you::before { border-color: rgba(25,45,85,.2); }
-.site-footer { background-size: 170px 170px, cover; }
+.site-footer { background-size: 170px 170px, cover, cover; }
 
 @media (max-width: 600px) {
   .event-section.section-shell,
   .journey-section.section-shell,
   .gallery-section,
-  .thank-you.section-shell { background-size: 210px 210px, cover; }
+  .thank-you.section-shell { background-size: 210px 210px, cover, cover; }
   .event-section::before { top: -120px; left: -155px; }
   .event-section::after { right: -160px; bottom: -130px; }
 }
 
 @media (max-width: 600px) {
-  .hero-section.graduation-cover { min-height: 100vh; min-height: 100svh; }
+  .hero-section.graduation-cover { min-height: 66vh; min-height: 66svh; }
   .hero-section.graduation-cover .cover-stage {
     width: 100%;
-    height: 100vh;
-    height: 100svh;
-    min-height: 100vh;
-    min-height: 100svh;
+    height: 66vh;
+    height: 66svh;
+    min-height: 66vh;
+    min-height: 66svh;
   }
 }
