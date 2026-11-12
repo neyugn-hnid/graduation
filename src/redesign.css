@@ -17,7 +17,7 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .invitation-page { min-height: 100vh; overflow: clip; background: var(--ivory); color: var(--ink); }
 .scroll-progress { height: 3px; background: var(--gold); }
 
-/* A quiet masthead replaces the envelope gate. */
+/* Navigation */
 .site-header {
   position: sticky;
   top: 0;
@@ -410,33 +410,178 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .event-intro .eyebrow, .event-location-card .eyebrow { color: #8e7549; }
 .event-intro h2 { margin: 19px 0 14px; color: #173b45; font-family: "Playfair Display", Georgia, serif; font-size: clamp(42px, 5vw, 65px); font-weight: 400; letter-spacing: -.055em; line-height: 1.02; }
 .event-intro h2 em { color: #a28754; font-weight: 400; }
-.event-intro > p { max-width: 310px; margin: 0; color: #737970; font-size: 11px; line-height: 1.8; }
-.event-invitation-card { position: relative; padding: 32px 34px 29px; border: 1px solid rgba(178,158,116,.35); border-radius: 7px; background: #fffdfa; box-shadow: 0 18px 44px rgba(41,52,46,.09); text-align: center; }
-.event-invitation-card::before { position: absolute; inset: 8px; border: 1px solid rgba(178,158,116,.24); border-radius: 3px; content: ""; pointer-events: none; }
-.event-invitation-heading { position: relative; display: grid; gap: 8px; }
-.event-invitation-heading > span { color: #92784c; font-size: 7px; letter-spacing: .18em; }
-.event-invitation-heading h3 { margin: 0; color: #28454a; font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 400; }
-.event-invitation-heading small { color: #83857d; font-size: 8px; }
-.event-calendar-card { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 22px 0 19px; padding: 14px 0; border-top: 1px solid #e4ddce; border-bottom: 1px solid #e4ddce; color: #596863; }
-.event-calendar-card > span { justify-self: end; font-family: "Playfair Display", Georgia, serif; font-size: 13px; }
-.event-calendar-card strong { color: #173b45; font-family: "Playfair Display", Georgia, serif; font-size: 55px; font-weight: 400; line-height: .95; }
-.event-calendar-card > i { justify-self: start; color: #997e4e; font-family: "Playfair Display", Georgia, serif; font-size: 11px; font-style: italic; }
-.event-calendar-card > small { display: none; }
-.event-card-details { position: relative; display: grid; gap: 12px; text-align: left; }
-.event-card-details > div { display: flex; align-items: flex-start; gap: 10px; color: #59645e; font-size: 9px; line-height: 1.6; }
-.event-card-details svg { flex: 0 0 auto; margin-top: 1px; color: #9b8050; }
-.event-card-details span > small { display: block; color: #898a82; font-size: 8px; }
-.event-location-showcase { position: relative; grid-column: 1 / -1; display: grid; grid-template-columns: 1.18fr .82fr; align-items: center; min-height: 292px; margin-top: 3px; }
+/* Lower invitation layout follows the open, airy reference composition. */
+.cover-invite-card {
+  position: absolute;
+  z-index: 5;
+  top: 51%;
+  bottom: 2.5%;
+  left: 50%;
+  display: flex;
+  width: min(90%, 560px);
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  color: #17191e;
+  text-align: center;
+}
+.cover-graduate-name {
+  position: static;
+  z-index: auto;
+  width: 100%;
+  margin: 0;
+  transform: translateY(-8px);
+  color: #17191e;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(24px, 8vw, 58px);
+  font-weight: 400;
+  line-height: 1.08;
+  text-align: center;
+  white-space: nowrap;
+}
+.cover-message {
+  position: static;
+  z-index: auto;
+  width: min(92%, 500px);
+  margin: 0;
+  color: #272a30;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(15px, 2vw, 18px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+}
+.cic-date-block {
+  display: grid;
+  width: 100%;
+  max-width: 520px;
+  grid-template-columns: minmax(0, 1fr) minmax(74px, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(8px, 2vw, 18px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.cic-date-side {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 2px;
+}
+.cic-date-side::before,
+.cic-date-side::after {
+  width: 100%;
+  height: 1.5px;
+  background: #17191e;
+  content: "";
+}
+.cic-weekday, .cic-time {
+  max-width: 100%;
+  color: #17191e;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(10px, 1.65vw, 13px);
+  font-weight: 500;
+  letter-spacing: .13em;
+  line-height: 1.15;
+  text-align: center;
+}
+.cic-time { letter-spacing: .09em; white-space: nowrap; }
+.cic-date-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+}
+.cic-month {
+  color: #17191e;
+  font-family: "DM Sans", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  line-height: 1;
+}
+.cic-day {
+  margin: 1px 0 0;
+  color: #111318;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(64px, 9vw, 78px);
+  font-variant-numeric: lining-nums;
+  font-weight: 400;
+  letter-spacing: -.08em;
+  line-height: .82;
+}
+.cic-year {
+  margin-top: 5px;
+  color: #41444a;
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  line-height: 1;
+}
+.cic-venue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+}
+.cic-venue > svg {
+  flex-shrink: 0;
+  color: #17191e;
+  stroke-width: 1.5;
+}
+.cic-venue-text { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+.cic-venue-text > strong {
+  color: #17191e;
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: clamp(17px, 2.4vw, 21px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+.cic-venue-text > span {
+  color: #4d5159;
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .cover-invite-card { top: 52%; bottom: 2%; width: 90%; gap: 8px; }
+  .cover-graduate-name { transform: translateY(-86px); font-size: clamp(24px, 8vw, 42px); }
+  .cover-message { width: 94%; transform: translateY(-58px); font-size: clamp(14px, 3.8vw, 16px); line-height: 1.4; }
+  .cic-date-block { grid-template-columns: minmax(0, 1fr) minmax(68px, auto) minmax(0, 1fr); gap: 7px; transform: translateY(-28px); }
+  .cic-date-side { gap: 10px; }
+  .cic-weekday, .cic-time { font-size: clamp(13px, 3.8vw, 15px); letter-spacing: .09em; }
+  .cic-time { letter-spacing: .035em; }
+  .cic-month { font-size: 12px; }
+  .cic-day { font-size: clamp(72px, 20vw, 86px); }
+  .cic-year { margin-top: 4px; font-size: 13px; }
+  .cic-venue { gap: 9px; }
+  .cic-venue > svg { width: 26px; height: 26px; }
+  .cic-venue-text > strong { font-size: 17px; }
+  .cic-venue-text > span { font-size: 9px; }
+}
+
+.event-location-showcase { position: relative; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; min-height: 0; margin-top: 3px; }
 .event-location-photo { position: relative; height: 292px; margin: 0; transform: rotate(-1deg); padding: 8px 8px 26px; background: #fffdfa; box-shadow: 0 12px 29px rgba(41,52,46,.13); }
 .event-location-photo img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.68); }
 .event-location-photo figcaption { position: absolute; right: 12px; bottom: 7px; left: 12px; color: #777a72; font-size: 7px; letter-spacing: .12em; text-align: center; }
-.event-location-card { position: relative; z-index: 1; margin-left: -32px; padding: 34px 35px; border-radius: 6px; background: #fffdfa; box-shadow: 0 17px 40px rgba(41,52,46,.13); }
+.event-location-card { position: relative; z-index: 1; width: min(100%, 640px); margin: 0 auto; padding: 34px 35px; border-radius: 6px; background: #fffdfa; box-shadow: 0 17px 40px rgba(41,52,46,.13); }
 .event-location-card h3 { margin: 15px 0 8px; color: #173b45; font-family: "Playfair Display", Georgia, serif; font-size: clamp(23px, 3vw, 35px); font-weight: 400; line-height: 1.1; }
 .event-location-card p { margin: 0; color: #747b73; font-size: 10px; line-height: 1.7; }
 .event-location-card a { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding-bottom: 5px; border-bottom: 1px solid #b49a68; color: #7b6743; font-size: 8px; letter-spacing: .1em; }
 .location-orbit { position: absolute; right: -60px; bottom: -90px; width: 190px; height: 190px; border: 1px solid rgba(23,59,69,.1); border-radius: 50%; pointer-events: none; }
 
-.journey-section.section-shell { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(42px, 7vw, 100px); overflow: hidden; padding: 104px max(7vw, calc((100vw - 1180px)/2)); background: #f4efe5; color: #24363a; }
+.journey-section.section-shell { position: relative; display: block; overflow: hidden; padding: 104px max(7vw, calc((100vw - 1180px)/2)); background: #f4efe5; color: #24363a; }
 .journey-section::after { position: absolute; right: -120px; bottom: -240px; width: 480px; height: 480px; border: 1px solid rgba(23,59,69,.08); border-radius: 50%; box-shadow: 0 0 0 36px rgba(23,59,69,.023), 0 0 0 72px rgba(23,59,69,.015); content: ""; pointer-events: none; }
 .journey-collage { position: relative; min-height: 530px; }
 .journey-photo { position: absolute; margin: 0; padding: 9px 9px 28px; background: #fffdfa; box-shadow: 0 15px 34px rgba(49,53,44,.15); }
@@ -449,7 +594,7 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .journey-stamp { position: absolute; z-index: 3; top: 49%; left: 0; display: flex; align-items: center; gap: 7px; padding: 9px 11px; transform: rotate(-90deg) translateX(-50%); transform-origin: left top; background: #173b45; color: #f4efe5; font-size: 7px; letter-spacing: .12em; }
 .journey-stamp i { width: 16px; height: 1px; background: #d5c393; }
 .journey-orb { position: absolute; z-index: 4; top: 45%; right: 7%; width: 38px; height: 38px; border-radius: 50%; background: rgba(180,185,182,.46); box-shadow: inset 4px 3px 9px rgba(255,255,255,.62), 0 5px 10px rgba(48,57,52,.1); }
-.journey-letter { position: relative; z-index: 1; padding: clamp(30px, 4vw, 52px); border: 1px solid #e8e2d7; border-radius: 6px; background: #fffdfa; box-shadow: 0 20px 48px rgba(45,52,47,.08); }
+.journey-letter { position: relative; z-index: 1; width: min(100%, 760px); margin: 0 auto; padding: clamp(30px, 4vw, 52px); border: 1px solid #e8e2d7; border-radius: 6px; background: #fffdfa; box-shadow: 0 20px 48px rgba(45,52,47,.08); }
 .journey-letter::before { position: absolute; inset: 10px; border: 1px solid rgba(178,158,116,.18); content: ""; pointer-events: none; }
 .journey-letter > * { position: relative; }
 .journey-letter .eyebrow { color: #92784c; font-size: 7px; }
@@ -472,26 +617,25 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .gallery-overlay { padding: 13px; background: linear-gradient(0deg, rgba(16,44,48,.63), transparent 64%); }
 .gallery-foot { color: #747a72; }
 
-.thank-you.section-shell { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 8%; min-height: 620px; overflow: hidden; padding: 91px max(7vw, calc((100vw - 1180px)/2)); background: #fffdf8; color: #2d4045; text-align: left; }
+.thank-you.section-shell { position: relative; display: flex; align-items: center; justify-content: center; min-height: 500px; overflow: hidden; padding: 80px max(7vw, calc((100vw - 1180px)/2)); background: #fffdf8; color: #2d4045; text-align: center; }
 .thank-you::before { inset: 20px max(20px, calc((100vw - 1370px)/2)); border: 1px solid rgba(143,122,77,.23); }
 .thank-you-photo { position: relative; height: 435px; margin: 0; padding: 9px 9px 29px; transform: rotate(-2deg); background: #fffdfa; box-shadow: 0 17px 38px rgba(43,50,46,.16); }
 .thank-you-photo img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.7); }
 .thank-you-photo figcaption { position: absolute; right: 12px; bottom: 8px; left: 12px; color: #777a72; font-family: "Playfair Display", Georgia, serif; font-size: 9px; text-align: center; }
-.thank-you-copy { position: relative; z-index: 1; }
+.thank-you-copy { position: relative; z-index: 1; width: min(100%, 680px); margin: 0 auto; }
 .thank-you .eyebrow { margin-bottom: 9px; color: #8e7549; }
 .thank-you-script { margin: 8px 0 3px; color: #92784d; font-family: "Playfair Display", Georgia, serif; font-size: clamp(21px, 2.7vw, 32px); font-style: italic; }
 .thank-you h2 { margin: 0; color: #173b45; font-size: clamp(43px, 5.4vw, 69px); line-height: 1.18; }
 .thank-you h2 em { color: #a28754; }
-.thank-you-note { max-width: 330px; margin: 15px 0 25px; color: #757a72; font-family: "DM Sans", sans-serif; font-size: 10px; font-style: normal; line-height: 1.75; }
+.thank-you-note { max-width: 330px; margin: 15px auto 25px; color: #757a72; font-family: "DM Sans", sans-serif; font-size: 10px; font-style: normal; line-height: 1.75; }
 .final-countdown { padding-top: 17px; border-top: 1px solid #d8cfbd; }
 .final-countdown > span { display: block; margin-bottom: 12px; color: #8c754a; font-size: 7px; letter-spacing: .16em; }
-.final-countdown .countdown-row { max-width: 410px; }
+.final-countdown .countdown-row { max-width: 410px; margin: 0 auto; }
 .final-countdown .countdown-number { color: #173b45; font-size: clamp(28px, 3.4vw, 40px); }
 .final-countdown .countdown-label { color: #757a72; }
 .final-countdown .countdown-colon { color: #a28754; }
 .thank-you .countdown-passed { color: #173b45; font-size: 22px; }
 .thank-you .countdown-passed em { color: #a28754; }
-.thank-you-orb { position: absolute; z-index: 1; right: 8%; top: 11%; width: 43px; height: 43px; border-radius: 50%; background: rgba(180,185,182,.42); box-shadow: inset 4px 3px 9px rgba(255,255,255,.62), 0 5px 10px rgba(48,57,52,.1); }
 
 /* Reference image inspired graduation cover. */
 .hero-section.reference-hero { min-height: 0; padding: 0 max(5vw, calc((100vw - 980px)/2)); background: #f7f6f2; color: #202b43; }
@@ -550,9 +694,8 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
   .event-section.section-shell { grid-template-columns: 1fr; gap: 26px; padding: 69px 7vw 64px; }
   .event-intro h2 { font-size: clamp(39px, 10vw, 54px); }
   .event-invitation-card { width: 100%; max-width: 440px; justify-self: center; padding: 27px 22px 25px; }
-  .event-location-showcase { grid-template-columns: 1fr; gap: 0; margin-top: 9px; }
-  .event-location-photo { height: 245px; margin: 0 9px; }
-  .event-location-card { margin: -24px 0 0 9%; padding: 26px 24px; }
+  .event-location-showcase { margin-top: 0; }
+  .event-location-card { padding: 26px 24px; }
   .event-location-card h3 { font-size: 27px; }
   .location-orbit { right: -70px; bottom: -50px; }
 
@@ -570,12 +713,10 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
   .gallery-item { border-width: 5px; border-bottom-width: 18px; }
   .gallery-overlay { padding: 9px; }
 
-  .thank-you.section-shell { grid-template-columns: 1fr; gap: 32px; min-height: 0; padding: 74px 9vw 76px; }
-  .thank-you-photo { height: min(100vw, 390px); }
+  .thank-you.section-shell { min-height: 0; padding: 74px 9vw 76px; }
   .thank-you-copy { padding: 0 3px; }
   .thank-you h2 { font-size: clamp(44px, 12vw, 58px); }
   .thank-you .eyebrow { font-size: 7px; }
-  .thank-you-orb { top: 5%; right: 8%; width: 31px; height: 31px; }
   .final-countdown .countdown-number { font-size: 32px; }
 }
 
@@ -605,11 +746,18 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 }
 
 /* Graduation announcement cover based on the latest reference. */
-.hero-section.graduation-cover { position: relative; display: block; min-height: 0; padding: 0; overflow: hidden; isolation: isolate; background: #f1f6f7; }
-.hero-section.graduation-cover::before { position: absolute; z-index: -1; inset: -8px; transform: scale(1.02); background: url("/images/bg.png") center 50% / cover no-repeat; content: ""; filter: blur(1.5px) brightness(1.06) saturate(.94); }
-.cover-stage { position: relative; width: 100%; max-width: 860px; height: min(100vw, 860px); min-height: 360px; margin: 0 auto; overflow: hidden; isolation: isolate; background: transparent; }
-.cover-photo { position: absolute; z-index: 3; right: auto; bottom: 0; left: 50%; display: block; width: 78%; height: 78%; transform: translateX(-50%); object-fit: contain; object-position: center bottom; filter: saturate(.92) contrast(.99); }
-.cover-heading { position: absolute; z-index: 2; top: 8%; left: 12%; display: flex; width: 76%; align-items: center; flex-direction: column; text-align: center; }
+.hero-section.graduation-cover { position: relative; display: block; min-height: 0; padding: 0; overflow: hidden; isolation: isolate; background: transparent; }
+.cover-stage { position: relative; width: min(100%, 680px); height: min(141vw, 960px); min-height: 0; margin: 0 auto; overflow: hidden; isolation: isolate; background: transparent; }
+.cover-ribbon { position: absolute; z-index: 2; top: -5%; display: block; width: 40%; height: auto; filter: drop-shadow(0 5px 6px rgba(17,31,55,.12)); pointer-events: none; }
+.cover-ribbon-left { left: 0; }
+.cover-ribbon-left img { display: block; width: 100%; height: auto; }
+.cover-ribbon-right { right: 0; }
+.cover-school-lockup { position: absolute; z-index: 4; top: 7.5%; right: 0; left: 0; display: flex; width: min(70%, 460px); align-items: center; justify-content: center; gap: clamp(9px, 1.8vw, 17px); margin: 0 auto; color: #192d55; }
+.cover-school-lockup > img { display: block; width: clamp(54px, 8vw, 78px); height: clamp(54px, 8vw, 78px); flex: 0 0 auto; object-fit: contain; }
+.cover-school-name { display: flex; flex-direction: column; gap: 3px; font-family: "Playfair Display", Georgia, serif; line-height: 1.3; text-align: left; }
+.cover-school-name strong { font-size: clamp(11px, 1.8vw, 16px); font-weight: 700; letter-spacing: .025em; }
+.cover-school-name small { font-size: clamp(9px, 1.35vw, 12px); font-weight: 500; letter-spacing: .08em; }
+.cover-heading { position: absolute; z-index: 3; top: 25%; right: 0; left: 0; display: flex; align-items: center; flex-direction: column; text-align: center; }
 @font-face {
   font-family: "Cormorant Garamond";
   font-style: normal;
@@ -642,21 +790,33 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
   src: url("/fonts/great-vibes-400-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-.cover-script { color: #173b58; font-family: "Great Vibes", cursive; font-size: clamp(34px, 5.5vw, 63px); font-style: normal; font-weight: 400; letter-spacing: .01em; line-height: 1.04; -webkit-text-stroke: .45px #173b58; text-shadow: 0 2px 3px rgba(16,46,70,.96), 0 5px 13px rgba(11,39,62,.62); }
-.cover-heading h1 { margin: 5px 0 0; color: #fffdf5; font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif; font-size: clamp(38px, 6.5vw, 78px); font-weight: 700; letter-spacing: .075em; line-height: 1; -webkit-text-stroke: 1.1px #123955; paint-order: stroke fill; text-shadow: 0 2px 4px rgba(13,42,64,.96), 0 6px 16px rgba(13,41,65,.58); }
-.cover-heading p { margin: 12px 0 0; color: #253d68; font-family: "Playfair Display", Georgia, serif; font-size: clamp(12px, 1.8vw, 20px); font-weight: 500; letter-spacing: .12em; text-shadow: 0 1px 8px rgba(255,255,255,.92); }
-.cover-name-banner { position: absolute; z-index: 4; bottom: 7%; left: 17%; display: grid; width: 66%; min-height: 54px; place-items: center; padding: 8px 25px; transform: skew(-7deg); border-radius: 18px 0 18px 0; background: #192d55; box-shadow: 0 7px 19px rgba(16,29,54,.15); color: #fff; }
-.cover-name-banner span { transform: skew(7deg); font-family: "Playfair Display", Georgia, serif; font-size: clamp(15px, 2.5vw, 27px); font-weight: 600; letter-spacing: .06em; text-align: center; }
+.cover-heading h1 { display: flex; margin: 0; align-items: center; flex-direction: column; color: #111827; line-height: .94; }
+.cover-title-script { color: #121722; font-family: "Great Vibes", cursive; font-size: clamp(43px, 8vw, 76px); font-weight: 400; letter-spacing: -.01em; }
+.cover-title-serif { transform: translateY(-2px); color: #111722; font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif; font-size: clamp(38px, 7vw, 64px); font-weight: 500; letter-spacing: -.035em; }
+/* .cover-event-card removed — replaced by .cover-invite-card */
 
 @media (max-width: 600px) {
-  .cover-stage { height: min(100vw, 600px); min-height: 360px; }
-  .cover-photo { object-position: center top; }
-  .cover-heading { top: 9%; left: 12%; width: 76%; }
-  .cover-script { font-size: clamp(30px, 9vw, 43px); }
-  .cover-heading h1 { margin-top: 4px; font-size: clamp(34px, 9.8vw, 47px); letter-spacing: .025em; }
-  .cover-heading p { margin-top: 8px; font-size: clamp(9px, 2.7vw, 12px); letter-spacing: .08em; }
-  .cover-name-banner { bottom: 7%; left: 14%; width: 72%; min-height: 43px; padding: 6px 13px; }
-  .cover-name-banner span { font-size: clamp(13px, 4vw, 17px); letter-spacing: .04em; }
+  .hero-section.graduation-cover {
+    min-height: 700px;
+  }
+  .hero-section.graduation-cover .cover-stage {
+    width: 100%;
+    height: 700px;
+    min-height: 700px;
+  }
+  .cover-school-lockup {
+    top: 5.5%;
+  }
+  .cover-heading {
+    top: 22%;
+  }
+  .cover-title-script {
+    font-size: clamp(36px, 9.5vw, 44px);
+  }
+  .cover-title-serif {
+    transform: translateY(-1px);
+    font-size: clamp(28px, 7.5vw, 34px);
+  }
 }
 
 /* A simple private tool for creating personalized invitation links. */
@@ -723,16 +883,10 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .event-section::before, .location-orbit { border-color: rgba(25,45,85,.1); }
 .event-intro .eyebrow, .event-location-card .eyebrow,
 .event-intro h2, .event-intro h2 em,
-.event-invitation-heading > span, .event-invitation-heading h3,
-.event-calendar-card strong, .event-calendar-card > i,
-.event-card-details svg, .event-location-card h3,
+.event-location-card h3,
 .event-location-card a { color: #192d55; }
-.event-intro > p, .event-card-details > div, .event-calendar-card,
-.event-card-details span > small, .event-location-card p { color: #252a31; }
-.event-invitation-card, .event-location-card { background: #fff; box-shadow: 0 14px 36px rgba(25,45,85,.08); }
-.event-invitation-card { border-color: #d9dee7; }
-.event-invitation-card::before { border-color: rgba(25,45,85,.12); }
-.event-calendar-card { border-color: #d9dee7; }
+.event-intro > p, .event-location-card p { color: #252a31; }
+.event-location-card { background: #fff; box-shadow: 0 14px 36px rgba(25,45,85,.08); }
 .event-location-photo { background: #fff; box-shadow: 0 12px 29px rgba(25,45,85,.1); }
 .event-location-card a { border-color: #192d55; }
 
@@ -758,69 +912,179 @@ body, body.invitation-open { background: var(--ivory); color: var(--ink); }
 .gallery-item { box-shadow: 0 10px 23px rgba(25,45,85,.1); }
 
 .thank-you.section-shell { background: #fff; color: #192d55; }
-.thank-you::before { border-color: rgba(25,45,85,.12); }
+.thank-you::before { display: none; }
 .thank-you .eyebrow, .thank-you-script, .thank-you h2,
 .thank-you h2 em, .final-countdown > span,
 .final-countdown .countdown-number, .final-countdown .countdown-colon,
 .thank-you .countdown-passed, .thank-you .countdown-passed em { color: #192d55; }
+.thank-you-script { color: #111827; }
 .thank-you-note, .final-countdown .countdown-label { color: #252a31; }
+.final-countdown .countdown-number,
+.final-countdown .countdown-colon { font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif; }
+.final-countdown .countdown-number { font-weight: 600; font-variant-numeric: lining-nums tabular-nums; letter-spacing: .01em; }
 .final-countdown { border-color: #d9dee7; }
 .thank-you-photo { background: #fff; box-shadow: 0 17px 38px rgba(25,45,85,.1); }
+.thank-you.section-shell :is(.eyebrow, .thank-you-script, h2, h2 em, .thank-you-note, .final-countdown > span, .countdown-number, .countdown-label, .countdown-colon, .countdown-passed, .countdown-passed em) { color: #111827; }
+.final-countdown .countdown-number, .final-countdown .countdown-colon { font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif; }
+.final-countdown .countdown-label { font-family: "DM Sans", sans-serif; }
 
 .site-footer { border-top: 1px solid #e0e4ea; background: #fff; color: #252a31; }
 .footer-brand, .back-top { color: #192d55; }
 .footer-brand span { color: #5a606a; }
 .footer-note svg { color: #192d55; }
 
-/* Botanical linework brings texture to the white sections below the cover. */
-.event-section.section-shell,
-.journey-section.section-shell,
-.gallery-section,
-.thank-you.section-shell,
-.site-footer {
-  background-image: url("/images/floral-pattern.svg"), url("/images/silk-wave-bg.png"), radial-gradient(ellipse at 50% 50%, rgba(229,235,245,.2), transparent 72%);
-  background-position: center, center 46%, center;
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-size: 280px 280px, cover, cover;
+/* One shared canvas keeps the silk background continuous below the cover. */
+.invitation-page main {
+  position: relative;
+  isolation: isolate;
+  background-color: #fff;
 }
-.event-section::before,
-.event-section::after,
-#gallery::before,
-.thank-you::after {
+.invitation-page main::before {
   position: absolute;
-  width: clamp(230px, 34vw, 390px);
-  aspect-ratio: 1;
-  background: url("/images/floral-pattern.svg") center / contain no-repeat;
+  z-index: -1;
+  inset: -9%;
+  background: url("/images/silk-scroll-bg.png") center / 100% 100% no-repeat;
   content: "";
-  opacity: .42;
   pointer-events: none;
+  transform-origin: center;
+  animation: silk-wave-drift 12s ease-in-out infinite alternate;
+  will-change: transform;
 }
-.event-section::before { top: -145px; left: -125px; border: 0; border-radius: 0; box-shadow: none; }
-.event-section::after { right: -130px; bottom: -155px; }
-#gallery { position: relative; isolation: isolate; overflow: hidden; }
-#gallery::before { z-index: -1; top: -145px; right: -105px; }
-.gallery-grid { position: relative; z-index: 1; }
-.thank-you { isolation: isolate; }
-.thank-you::after { z-index: -1; right: -125px; bottom: -160px; }
-.thank-you::before { border-color: rgba(25,45,85,.2); }
-.site-footer { background-size: 170px 170px, cover, cover; }
-
-@media (max-width: 600px) {
-  .event-section.section-shell,
-  .journey-section.section-shell,
-  .gallery-section,
-  .thank-you.section-shell { background-size: 210px 210px, cover, cover; }
-  .event-section::before { top: -120px; left: -155px; }
-  .event-section::after { right: -160px; bottom: -130px; }
+.invitation-page main::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 33%, rgba(145,158,180,.14) 43%, rgba(255,255,255,.78) 49%, rgba(135,151,176,.2) 55%, transparent 66%);
+  background-size: 220% 100%;
+  content: "";
+  opacity: .8;
+  pointer-events: none;
+  animation: silk-wave-sheen 10s ease-in-out infinite;
 }
-
+.invitation-body-bg {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+.invitation-body-bg > .event-section.section-shell,
+.invitation-body-bg > .journey-section.section-shell,
+.invitation-body-bg > #gallery,
+.invitation-body-bg > .thank-you.section-shell,
+.invitation-body-bg > .site-footer { background: transparent; }
+.music-control {
+  position: fixed;
+  z-index: 40;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #d9dee7;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 7px 24px rgba(25, 45, 85, .13);
+  color: #192d55;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.music-control:hover {
+  transform: translateY(-2px);
+  border-color: #aab8ce;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(25, 45, 85, .18);
+}
+.music-control:focus-visible { outline: 3px solid rgba(25, 45, 85, .28); outline-offset: 3px; }
+.music-control.is-playing { border-color: #192d55; background: #192d55; color: #fff; }
+.music-control svg { flex: 0 0 auto; }
+.music-control.is-playing svg { animation: music-icon-spin 5s linear infinite; }
+@keyframes music-icon-spin { to { transform: rotate(360deg); } }
 @media (max-width: 600px) {
-  .hero-section.graduation-cover { min-height: 66vh; min-height: 66svh; }
+  .music-control {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+}
+@keyframes silk-wave-drift {
+  0% { transform: translate3d(-2.5%, -1.5%, 0) scale(1.04) skewY(-.35deg); }
+  50% { transform: translate3d(2%, 1%, 0) scale(1.07) skewY(.4deg); }
+  100% { transform: translate3d(-1.5%, 2%, 0) scale(1.04) skewY(-.25deg); }
+}
+@keyframes silk-wave-sheen {
+  0% { background-position: 120% 50%; transform: translateY(-1.5%) skewY(-.35deg); }
+  50% { background-position: 50% 50%; transform: translateY(1%) skewY(.3deg); }
+  100% { background-position: -20% 50%; transform: translateY(-1%) skewY(-.3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-page main::before { animation: none; transform: scale(1.04); }
+  .invitation-page main::after { animation: none; }
+  .music-control.is-playing svg { animation: none; }
+}
+@media (max-width: 600px) {
+  html, body { overscroll-behavior-y: none; }
+  body.invitation-open, .invitation-page { background-color: #fff; }
+  .hero-section.graduation-cover { min-height: 700px; }
   .hero-section.graduation-cover .cover-stage {
     width: 100%;
-    height: 66vh;
-    height: 66svh;
-    min-height: 66vh;
-    min-height: 66svh;
+    height: 700px;
+    min-height: 700px;
   }
+}
+
+/* Stagger the invitation cover on first view and reveal lower content on scroll. */
+@keyframes cover-reveal-down {
+  from { opacity: 0; translate: 0 -18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes cover-reveal-left {
+  from { opacity: 0; translate: -18px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes cover-reveal-right {
+  from { opacity: 0; translate: 18px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes cover-ribbon-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cover-ribbon-left { animation: cover-reveal-left .95s cubic-bezier(.2,.7,.2,1) .12s both; }
+.cover-ribbon-right { animation: cover-reveal-right .95s cubic-bezier(.2,.7,.2,1) .2s both; }
+.cover-school-lockup { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) .22s both; }
+.cover-title-script { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) .42s both; }
+.cover-title-serif { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) .56s both; }
+.cover-graduate-name { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) .78s both; }
+.cover-message { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) .94s both; }
+.cic-date-block { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) 1.08s both; }
+.cic-venue { animation: cover-reveal-down .8s cubic-bezier(.2,.7,.2,1) 1.22s both; }
+.reveal {
+  opacity: 0;
+  translate: 0 -22px;
+  transition: opacity .72s cubic-bezier(.2,.7,.2,1), translate .72s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.is-visible { opacity: 1; translate: 0 0; }
+.countdown-block.reveal.is-visible { transition-delay: .2s; }
+@media (max-width: 600px) {
+  .cover-ribbon { filter: none; }
+  .cover-ribbon-left, .cover-ribbon-right { translate: none; }
+  .cover-ribbon-left { animation: cover-ribbon-fade-in .7s ease .12s both; }
+  .cover-ribbon-right { animation: cover-ribbon-fade-in .7s ease .2s both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-ribbon-left, .cover-ribbon-right, .cover-school-lockup,
+  .cover-title-script, .cover-title-serif, .cover-graduate-name,
+  .cover-message, .cic-date-block, .cic-venue {
+    animation: none;
+    opacity: 1;
+    translate: none;
+  }
+  .reveal, .reveal.is-visible { opacity: 1; translate: none; transition: none; }
 }

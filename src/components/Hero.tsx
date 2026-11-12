@@ -1,44 +1,80 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { MapPin } from 'lucide-react'
 import { graduation } from '../config/graduation'
 
-export function Hero() {
-  const reduceMotion = useReducedMotion()
+const timeZone = 'Asia/Ho_Chi_Minh'
+
+export function Hero({ inviteeName }: { inviteeName?: string }) {
+  const ceremony = new Date(graduation.eventDate)
+  const day = new Intl.DateTimeFormat('vi-VN', { day: '2-digit', timeZone }).format(ceremony)
+  const month = new Intl.DateTimeFormat('vi-VN', { month: 'long', timeZone }).format(ceremony)
+  const year = new Intl.DateTimeFormat('vi-VN', { year: 'numeric', timeZone }).format(ceremony)
+  const weekday = new Intl.DateTimeFormat('vi-VN', { weekday: 'long', timeZone }).format(ceremony)
+  const graduateName = graduation.graduateName
+    .split(' ')
+    .map((part) => part ? part[0].toLocaleUpperCase('vi') + part.slice(1).toLocaleLowerCase('vi') : '')
+    .join(' ')
+  const eventTimeParts = graduation.eventTime.split('—')
+  const eventTime = eventTimeParts.length > 1
+    ? eventTimeParts.slice(0, -1).join('—').trim()
+    : graduation.eventTime.trim()
+  const invitationMessage = graduation.invitationMessage.replace('{guestName}', inviteeName || 'cậu')
 
   return (
     <section className="hero-section graduation-cover" id="top" aria-labelledby="hero-title">
       <div className="cover-stage">
+        {/* Ribbon decorations */}
+        <div className="cover-ribbon cover-ribbon-left" aria-hidden="true">
+          <img src="/images/left.png" alt="" />
+        </div>
+        <img className="cover-ribbon cover-ribbon-right" src="/images/right.png" alt="" aria-hidden="true" />
+
+        {/* University lockup */}
+        <div className="cover-school-lockup" aria-label={graduation.university}>
+          <img src={graduation.universityLogo} alt="" />
+          <span className="cover-school-name">
+            <strong>TRƯỜNG ĐẠI HỌC Y - DƯỢC</strong>
+            <small>ĐẠI HỌC THÁI NGUYÊN</small>
+          </span>
+        </div>
+
+        {/* Title */}
         <header className="cover-heading">
-          <motion.span
-            className="cover-script"
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: .45, delay: .06, ease: 'easeOut' }}
-          >Thư mời</motion.span>
-          <motion.h1
-            id="hero-title"
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: .5, delay: .2, ease: 'easeOut' }}
-          >LỄ TỐT NGHIỆP</motion.h1>
+          <h1 id="hero-title" aria-label="Graduation Ceremony">
+            <span className="cover-title-script" aria-hidden="true">Thư mời</span>
+            <span className="cover-title-serif" aria-hidden="true">LỄ TỐT NGHIỆP</span>
+          </h1>
         </header>
 
-        <motion.img
-          className="cover-photo"
-          src={graduation.portrait}
-          alt="Ảnh lễ tốt nghiệp"
-          initial={reduceMotion ? false : { opacity: 0, x: '-50%', y: 16 }}
-          animate={{ opacity: 1, x: '-50%', y: 0 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: .6, delay: .36, ease: 'easeOut' }}
-        />
+        {/* Invitation details below the ceremony title */}
+        <article className="cover-invite-card" aria-label="Thông tin sự kiện">
+          <p className="cover-graduate-name">{graduateName}</p>
+          <p className="cover-message">{invitationMessage}</p>
 
-        <motion.div
-          className="cover-name-banner"
-          initial={reduceMotion ? false : { opacity: 0, y: 18, skewX: -7 }}
-          animate={{ opacity: 1, y: 0, skewX: -7 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: .5, delay: .55, ease: 'easeOut' }}
-        >
-          <span>{graduation.graduateName}</span>
-        </motion.div>
+          {/* Date block */}
+          <div className="cic-date-block" aria-label={`${weekday}, ngày ${day} ${month} ${year}`}>
+            <div className="cic-date-side cic-date-left">
+              <strong className="cic-weekday">THỨ {weekday.replace(/^thứ\s+/i, '').toLocaleUpperCase('vi')}</strong>
+            </div>
+            <div className="cic-date-center">
+              <span className="cic-month">{month.toUpperCase()}</span>
+              <strong className="cic-day">{day}</strong>
+              <span className="cic-year">{year}</span>
+            </div>
+            <div className="cic-date-side cic-date-right">
+              <strong className="cic-time">{eventTime}</strong>
+            </div>
+          </div>
+
+          {/* Venue */}
+          <div className="cic-venue">
+            <MapPin size={13} aria-hidden="true" />
+            <div className="cic-venue-text">
+              <strong>{graduation.venue}</strong>
+              <span>{graduation.address}</span>
+            </div>
+          </div>
+
+        </article>
       </div>
     </section>
   )
