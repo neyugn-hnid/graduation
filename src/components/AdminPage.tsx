@@ -14,6 +14,7 @@ export function AdminPage() {
     if (!normalizedName) return ''
     const url = new URL('/', window.location.origin)
     url.searchParams.set('guestName', normalizedName)
+    url.searchParams.set('v', '3')
     return url.toString()
   }, [normalizedName])
 
