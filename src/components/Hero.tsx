@@ -13,10 +13,6 @@ export function Hero({ inviteeName }: { inviteeName?: string }) {
     .split(' ')
     .map((part) => part ? part[0].toLocaleUpperCase('vi') + part.slice(1).toLocaleLowerCase('vi') : '')
     .join(' ')
-  const eventTimeParts = graduation.eventTime.split('—')
-  const eventTime = eventTimeParts.length > 1
-    ? eventTimeParts.slice(0, -1).join('—').trim()
-    : graduation.eventTime.trim()
   const invitationMessage = graduation.invitationMessage.replace('{guestName}', inviteeName || 'cậu')
 
   return (
@@ -58,20 +54,48 @@ export function Hero({ inviteeName }: { inviteeName?: string }) {
             <div className="cic-date-center">
               <span className="cic-month">{month.toUpperCase()}</span>
               <strong className="cic-day">{day}</strong>
-              <span className="cic-year">{year}</span>
             </div>
             <div className="cic-date-side cic-date-right">
-              <strong className="cic-time">{eventTime}</strong>
+              <strong className="cic-time">{year}</strong>
             </div>
           </div>
 
-          {/* Venue */}
-          <div className="cic-venue">
-            <MapPin size={13} aria-hidden="true" />
-            <div className="cic-venue-text">
-              <strong>{graduation.venue}</strong>
-              <span>{graduation.address}</span>
+          <div className="cic-session-block">
+            <div className="cic-session-grid" role="group" aria-label="Địa điểm buổi sáng và buổi chiều">
+              <a
+                className="cic-session"
+                href="https://maps.app.goo.gl/BSAe3e74mQyuu5b58"
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Mở bản đồ tới ${graduation.venue}`}
+              >
+                <span className="cic-session-period">BUỔI SÁNG - 8:00</span>
+                <div className="cic-venue">
+                  <MapPin size={13} aria-hidden="true" />
+                  <div className="cic-venue-text">
+                    <strong>{graduation.venue}</strong>
+                    <span>{graduation.address}</span>
+                  </div>
+                </div>
+              </a>
+              <a
+                className="cic-session"
+                href="https://maps.app.goo.gl/YP4sK13unQ18Je3x6"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Mở bản đồ tới Nhà hát Ca, Múa, Nhạc Quốc gia Việt Nam"
+              >
+                <span className="cic-session-period">BUỔI CHIỀU - 13:30</span>
+                <div className="cic-venue">
+                  <MapPin size={13} aria-hidden="true" />
+                  <div className="cic-venue-text">
+                    <strong>Nhà hát Ca, Múa, Nhạc Quốc gia Việt Nam</strong>
+                    <span>{graduation.address}</span>
+                  </div>
+                </div>
+              </a>
             </div>
+            <p className="cic-map-hint">Nhấn vào địa điểm để xem bản đồ</p>
           </div>
 
         </article>
