@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Music2, Volume2 } from 'lucide-react'
-import { AdminPage } from './components/AdminPage'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { graduation } from './config/graduation'
 
 export default function App() {
-  const route = window.location.pathname.replace(/\/+$/, '') || '/'
-  if (route === '/admin') return <AdminPage />
   return <InvitationPage />
 }
 
